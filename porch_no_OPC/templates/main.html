@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+<head>
+	<title> Fritter </title>
+	<link rel="shortcut icon" href="{{ url_for('static', filename='images/flask.ico') }}">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+</head>
+<body>
+	<nav class="navbar navbar-expand-md fixed-top navbar-top">
+		<!--<a href="#" class="navbar-left"><img src="doughnut_simple_pink.svg"></a>-->
+		<a class="navbar-brand" href="#">
+			<img src="{{url_for('static', filename='images/doughnut_simple_small.svg')}}" class="d-inline-block align-top" alt="">
+		{{sys_name}}</a>
+	</nav>
+
+	<div class="container">
+		<div class ="row"><!-- Power Button Row-->
+			<div class="col-1"></div><!-- Spacer -->
+			<div class="col-10">
+				{% if settings['power'] == False %}
+					<a class="btn btn-success btn-block {% if settings['pattern_running']==True %}disabled{% endif %}" href="/power/on" role="button">
+						<span class='fa fa-power-off'></span> Turn Power On</a>
+				{% else %}
+					<a class="btn btn-danger btn-block {% if settings['pattern_running']==True %}disabled{% endif %}" href="/power/off" role="button">
+						<span class='fa fa-power-off'></span> Turn Power off</a>
+				{% endif %}
+			</div>
+			<div class="col-1"></div><!-- Spacer -->
+		</div><!-- End Power Button Row -->
+
+		<div class ="row"> <!-- Color Row-->
+			<div class="col-1"></div>
+			<div class="input-group col-10">
+				<div class="input-group-prepend">
+					<button class="btn btn-secondary dropdown-toggle " type="button" data-toggle="dropdown" 
+					{% if settings['pattern_running']==True or settings['power']==False %} disabled = "disabled" {% endif %}
+					>Color   </button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item color-picker" id="Rainbow">Rainbow</a>
+						<a class="dropdown-item color-picker" id="One-Color">One-Color</a>
+						<a class="dropdown-item color-picker" id="Two-Color">Two-Color</a>
+						<a class="dropdown-item color-picker" id="Three-Color">Three-Color</a>
+					</div>
+				</div>
+			  <input type="text" class="form-control" id="color-option" value="{{settings['color']}}" readonly>
+			</div>
+			<div class="col-1"></div>
+		</div><!-- End Color Row-->
+		<div class = "row" id="color-one"><!-- Start color-one Row--> 
+			<div class="col-2"></div>
+			<div class="input-group input-group-sm col-9">
+				<div class="input-group-prepend">
+					<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+					{% if settings['pattern_running']==True or settings['power']==False %} disabled = "disabled" {% endif %}
+					>Color 1</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item color-one-picker" id="White">White</a>
+						<a class="dropdown-item color-one-picker" id="Red">Red</a>
+						<a class="dropdown-item color-one-picker" id="Orange">Orange</a>
+						<a class="dropdown-item color-one-picker" id="Yellow">Yellow</a>
+						<a class="dropdown-item color-one-picker" id="Green">Green</a>
+						<a class="dropdown-item color-one-picker" id="Teal">Teal</a>
+						<a class="dropdown-item color-one-picker" id="Blue">Blue</a>
+						<a class="dropdown-item color-one-picker" id="Pink">Pink</a>
+					</div>
+				</div>
+				<input type="text" class="form-control" id="color-one" readonly>
+			</div>
+			<div class="col-1"></div>
+    	</div><!-- End color-one Row-->
+		<div class = "row" id="color-two">
+			<div class="col-2"></div>
+			<div class="input-group input-group-sm col-9">
+				<div class="input-group-prepend">
+					<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+					{% if settings['pattern_running']==True or settings['power']==False %} disabled = "disabled" {% endif %}
+					>Color 2</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item color-one-picker" id="White">White</a>
+						<a class="dropdown-item color-one-picker" id="Red">Red</a>
+						<a class="dropdown-item color-one-picker" id="Orange">Orange</a>
+						<a class="dropdown-item color-one-picker" id="Yellow">Yellow</a>
+						<a class="dropdown-item color-one-picker" id="Green">Green</a>
+						<a class="dropdown-item color-one-picker" id="Teal">Teal</a>
+						<a class="dropdown-item color-one-picker" id="Blue">Blue</a>
+						<a class="dropdown-item color-one-picker" id="Pink">Pink</a>
+					</div>
+				</div>
+				<input type="text" class="form-control" id="color-one" readonly>
+			</div>
+			<div class="col-1"></div>
+    	</div>
+		<div class = "row" id="color-three">
+			<div class="col-2"></div>
+			<div class="input-group input-group-sm col-9">
+				<div class="input-group-prepend">
+					<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+					{% if settings['pattern_running']==True or settings['power']==False %} disabled = "disabled" {% endif %}
+					>Color 3</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item color-one-picker" id="White">White</a>
+						<a class="dropdown-item color-one-picker" id="Red">Red</a>
+						<a class="dropdown-item color-one-picker" id="Orange">Orange</a>
+						<a class="dropdown-item color-one-picker" id="Yellow">Yellow</a>
+						<a class="dropdown-item color-one-picker" id="Green">Green</a>
+						<a class="dropdown-item color-one-picker" id="Teal">Teal</a>
+						<a class="dropdown-item color-one-picker" id="Blue">Blue</a>
+						<a class="dropdown-item color-one-picker" id="Pink">Pink</a>
+					</div>
+				</div>
+				<input type="text" class="form-control" id="color-one" readonly>
+			</div>
+			<div class="col-1"></div>
+    	</div>
+		<div class ="row"> <!-- Shadow Row-->
+			<div class="col-1"></div>
+			<div class="input-group col-10">
+				<div class="input-group-prepend">
+					<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+					{% if settings['pattern_running']==True or settings['power']==False %} disabled = "disabled" {% endif %}
+					>Pattern</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item pattern-picker" id="None"><img src="{{url_for('static', filename='images/none.svg')}}">None</a>
+						<a class="dropdown-item pattern-picker" id="Mirror-Wave"><img src="{{url_for('static', filename='images/mirror_wave.svg')}}">Mirror-Wave</a>
+						<a class="dropdown-item pattern-picker" id="Sync-Wave"><img src="{{url_for('static', filename='images/sync_wave.svg')}}">Sync-Wave
+						</a>
+						<a class="dropdown-item pattern-picker" id="Criss-Cross"><img src="{{url_for('static', filename='images/cross.svg')}}">Criss-Cross</a>
+						<a class="dropdown-item pattern-picker" id="Random-Roll"><img src="{{url_for('static', filename='images/random-roll.svg')}}">Random-Roll</a>
+						<a class="dropdown-item pattern-picker" id="Wave-Cave"><img src="{{url_for('static', filename='images/wave-cave.svg')}}">Wave-Cave</a>
+					</div>
+				</div>
+				<input type="text" class="form-control" id="pattern-option" value="{{settings['pattern']}}"readonly>
+			</div>
+			<div class="col-1"></div>
+		</div><!-- End Shadow Row-->
+
+		<div class ="row"><!-- Start/Stop Row-->
+			<div class="col-1"></div><!-- Spacer -->
+			<div class="col-10">
+				{% if settings['pattern_running'] == False %}
+					<button id="startme" type="button" class="btn btn-info btn-block"
+					{% if settings['power']==False %} disabled = "disabled" {% endif %}
+					><span class='fa fa-power-off'></span> Start Program</button>
+				{% else %}
+					<button id="stopme" type="button" class="btn btn-secondary btn-block"
+					{% if settings['power']==False %} disabled = "disabled" {% endif %}
+					><span class='fa fa-power-off'></span> Stop Program </button>
+				{% endif %}
+			</div>
+			<div class="col-1"></div><!-- Spacer -->
+		</div><!-- End Start/Stop Row -->
+
+
+    	<div class = "row">
+			<div class="col-1"></div>
+
+			<div class="col-1"></div>
+		</div>
+	</div> <!-- End Container -->
+
+		<nav class="navbar fixed-bottom navbar-light">
+				<div class="centered-footer">powered by sprijnkle <img src="{{url_for('static', filename='images/doughnut_simple_small.svg')}}"></div>
+		</nav>
+
+	<!-- Load javascript -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script>	
+    <script type="text/javascript" src="{{url_for('static', filename='js/piklor.js')}}"></script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+.toggle.max, .toggle-on.max, .toggle-off.max { width: 100% !important;}
+/*.nsg {padding-left: 5px; padding-right: 5px; padding-top: 5px;}*/
+body {
+	min-height: 75rem; 
+	padding-top: 4.5rem;
+	background-image: url("science_gray.png");
+	background-repeat: repeat; 
+	background-size: 770px 577px;
+}
+
+.navbar-top {
+	background-color:#4D4D4D;
+	
+}
+.navbar-brand {
+	color:#FF80E5;
+}
+.progress {
+	background-color:#838486;
+	border-style:solid;
+	height:30px;
+	margin-top:15px;
+}
+
+.centered-footer {
+	margin: 0 auto;
+}
+
+.row {
+    padding-bottom: .5rem;	
+}
+
+.pattern-picker img {
+	padding-right:1rem;
+}
+.btn-white{
+	background-color:#FFFFFF;
+	border-color: #000000;
+    padding: 1rem 1rem;
+}
+.btn-red{
+	background-color:#FF0000;
+	border-color: #000000;
+    padding: 1rem 1rem;
+}
+.btn-orange{
+	background-color:#ffa000;
+	border-color: #000000;
+    padding: 1rem 1rem;
+}
+.btn-yellow{
+	background-color:#ffff00;
+	border-color: #000000;
+    padding: 1rem 1rem;
+}
+.btn-green{
+	background-color:#00ff00;
+	border-color: #000000;
+    padding: 1rem 1rem;
+}
+.btn-blue{
+	background-color:#0000ff;
+	border-color: #000000;
+    padding: 1rem 1rem;
+}
+.btn-teal{
+	background-color:#00ffff;
+	border-color: #000000;
+    padding: 1rem 1rem;
+}
+.btn-pink{
+	background-color:#ff00ff;
+	border-color: #000000;
+    padding: 1rem 1rem;
+}
+.btn-black{
+	background-color:#000000;
+	border-color: #000000;
+    padding: 1rem 1rem;
+}
