@@ -41,22 +41,14 @@ $(document).ready(function() {
     socket.on('process_status', function(msg) {
         $('#process_status').html( 'step ' + msg.step + ' of ' + msg.total_steps);
     });
-
-    $( "#stopme" ).click(function() {
-      socket.emit('stopme');
-    });
-    $( "#startme" ).click(function() {
-      socket.emit('startme');
-    });
 */
    $( ".color-picker" ).click(function() {
-      $('#color-option').val(this.id);
-      console.log("red clicked");
+        $('#color-option').val(this.id);
+        $('#color-option').trigger("change");
     });
 
    $( ".pattern-picker" ).click(function() {
       $('#pattern-option').val(this.id);
-      console.log("red clicked");
     });
 
     $( "#startme" ).click(function() {
@@ -71,6 +63,13 @@ $(document).ready(function() {
       window.location.href = $url
     });
 
+    $( "#color-option" ).change(function() {
+        $color = $("#color-option").val();
+        if ($color == "Rainbow" ){
+            alert("rainbow");
+        }
+    });
+
 });            
 
 /*$(document).on( "click", ".color-picker", function(ev) {
@@ -78,35 +77,3 @@ $(document).ready(function() {
       $('#color-option').val(this.id);
       console.log("red clicked");
 });*/
-window.addEventListener("load", function () {
-    var pk = new Piklor(".color-pallet", [
-            "#1abc9c"
-          , "#2ecc71"
-          , "#3498db"
-          , "#9b59b6"
-          , "#34495e"
-          , "#16a085"
-          , "#27ae60"
-          , "#2980b9"
-          , "#8e44ad"
-          , "#2c3e50"
-          , "#f1c40f"
-          , "#e67e22"
-          , "#e74c3c"
-          , "#ecf0f1"
-          , "#95a5a6"
-          , "#f39c12"
-          , "#d35400"
-          , "#c0392b"
-          , "#bdc3c7"
-          , "#7f8c8d"
-        ], {
-            open: ".picker-wrapper .btn"
-        })
-      , wrapperEl = pk.getElm(".picker-wrapper")
-      ;
-
-    pk.colorChosen(function (col) {
-        wrapperEl.style.backgroundColor = col;
-    });
-});
